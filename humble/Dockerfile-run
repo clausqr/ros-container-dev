@@ -1,0 +1,8 @@
+ARG BASE_IMAGE=ros:humble
+FROM ${BASE_IMAGE}
+
+# Example image. Put what is needed to get the dev environment running.
+
+# Install git
+RUN apt -y update && apt install -y git
+RUN mkdir -p /ros2_ws && chmod -R 0777 /ros2_ws
