@@ -72,7 +72,7 @@ bash build.bash <distro> <your-repo-url>
 
 For example:
 ```
-bash build.bash humble https://github.com/your-repo-url
+bash build.bash humble https://github.com/super-pkg
 ```
 
 At this step the repo will be cloned to `<distro_name>/ros2_ws/src/<repo_name>`.
@@ -87,5 +87,10 @@ You can tune how to run your code by editing `<distro_name>/drun.bash`.
 To get a terminal into your container:
 
 ``` bash
-bash run.bash 
+bash run.bash <distro> <image_name>
+```
+
+For example:
+```
+bash run.bash humble super-pkg:humble
 ```
