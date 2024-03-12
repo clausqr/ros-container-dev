@@ -80,7 +80,6 @@ At this step the repo will be cloned to `<distro_name>/ros2_ws/src/<repo_name>`.
 7. Code!
 
 Edit your code under `<distro_name>/ros2_ws/src/<repo_name>`.
-You can tune how to run your code by editing `<distro_name>/drun.bash`.
 
 8. run, debug, etc.
 
