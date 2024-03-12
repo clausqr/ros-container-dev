@@ -1,0 +1,5 @@
+# Ignore everything under src/ and its subdirectories, as it will have its own repo.
+Dockerfile
+src/*
+src/**/*
+
