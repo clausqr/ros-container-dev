@@ -10,7 +10,9 @@
 
 Developing ROS2 code in a containerized environment promotes better code organization, reproducibility, portability, consistency, and scalability. It simplifies the development process and enhances collaboration among team members.
 
-Here is a collection of Docker images used across multiple repositories. They are derived from the [dockwater](https://github.com/Field-Robotics-Lab/dockwater) project.
+Here is a collection of Docker images and run scripts to build and run the containers. 
+
+They are derived from the [dockwater](https://github.com/Field-Robotics-Lab/dockwater) project.
 
 ## Usage under Ubuntu 22.04 and ROS2 Humble
 
