@@ -67,8 +67,14 @@ A sample Dockerfile is provided, and the default local workspace for ROS develop
 
 6. Build the dev image
 ``` bash
-bash build.bash --ros-distro humble --repo <your-repo-url>
+bash build.bash <distro> <your-repo-url>
 ```
+
+For example:
+```
+bash build.bash humble https://github.com/your-repo-url
+```
+
 At this step the repo will be cloned to `<distro_name>/ros2_ws/src/<repo_name>`.
 
 7. Code!
