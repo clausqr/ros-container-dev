@@ -42,11 +42,10 @@ Help()
 JOY=/dev/input/js0
 CUDA=""
 
-# Extract distro and repo from command line arguments
-DISTRO=$1
-IMG_NAME=$2
+# Extract image name from arguments
+IMG_NAME=$1
 
-ROCKER_ARGS="--devices $JOY --dev-helpers --nvidia --x11 --user --git --volume $(pwd)/$DISTRO/ros2_ws:/ros2_ws"
+ROCKER_ARGS="--devices $JOY --dev-helpers --nvidia --x11 --user --git --volume $(pwd)/ros2_ws:/ros2_ws"
 
 
 # Replace `:` with `_` to comply with docker container naming
@@ -55,12 +54,6 @@ CONTAINER_NAME="$(tr ':' '_' <<< "$IMG_NAME")_runtime"
 ROCKER_ARGS="${ROCKER_ARGS} --name $CONTAINER_NAME"
 
 echo "Using image <$IMG_NAME> to start container <$CONTAINER_NAME>"
-
-# Debug the variables
-echo "DISTRO: $DISTRO"
-echo "IMG_NAME: $IMG_NAME"
-echo "CONTAINER_NAME: $CONTAINER_NAME"
-echo "ROCKER_ARGS: $ROCKER_ARGS"
 
 
 rocker ${CUDA} ${ROCKER_ARGS} $IMG_NAME 

@@ -67,29 +67,29 @@ A sample Dockerfile is provided, and the default local workspace for ROS develop
 
 6. Build the dev image
 ``` bash
-bash build.bash <distro> <your-repo-url>
+bash build.bash <your-repo-url>
 ```
 
 For example:
 ```
-bash build.bash humble https://github.com/super-pkg
+bash build.bash https://github.com/super-pkg
 ```
 
-At this step the repo will be cloned to `<distro_name>/ros2_ws/src/<repo_name>`.
+At this step the repo will be cloned to `./ros2_ws/src/<repo_name>`.
 
 7. Code!
 
-Edit your code under `<distro_name>/ros2_ws/src/<repo_name>`.
+Edit your code under `./ros2_ws/src/<repo_name>`.
 
 8. run, debug, etc.
 
 To get a terminal into your container:
 
 ``` bash
-bash run.bash <distro> <image_name>
+bash run.bash <image_name>
 ```
 
 For example:
 ```
-bash run.bash humble super-pkg:humble
+bash run.bash super-pkg:humble
 ```

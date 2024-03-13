@@ -20,24 +20,22 @@
 # Builds a Docker image.
 
 # Arguments:
-#   $1: The ROS distro name, e.g., "kinetic" or "melodic"
-#   $2: The link to the repository to get and setup for dev.
-#   $3: The name of the image to build.
+#   $1: The link to the repository to get and setup for dev.
+#   $2: The name of the image to build.
 
 #!/usr/bin/env bash
 
 echo "This script will build a Docker image and clone a repository to the ROS workspace inside the container while exposing the source code to the outside, for dev convenience..."
-if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
-    echo "Usage: $0 <distro> <repo> <image_name>"
+if [ -z "$1" ] || [ -z "$2" ] ; then
+    echo "Usage: $0 <repo> <image_name>"
     exit 1
 fi
 
-distro=$1
-repo=$2
-image_name=$3
+repo=$1
+image_name=$2
 
-if [ -z "$distro" ] || [ -z "$repo" ] || [ -z "$image_name" ]; then
-    echo "Missing arguments. Please provide the ROS distro name, repository link, and image name."
+if [ -z "$repo" ] || [ -z "$image_name" ]; then
+    echo "Missing arguments. Please provide the repository link and image name."
     exit 1
 fi
 
@@ -46,19 +44,21 @@ image_plus_tag=$image_name:$(export LC_ALL=C; date +%Y%m%d_%H%M)
 image_plus_tag_base=$image_plus_tag"-env"
 image_plus_tag_run=$image_plus_tag"-run"
 
-docker build --rm -t $image_plus_tag_base -f "${distro}"/Dockerfile-env "${distro}" && \
-docker tag $image_plus_tag_base $image_name:$distro"-env" && \
-echo "Built $image_plus_tag_base and tagged as $image_name:$distro"-env""
+docker build --rm \
+    -t $image_plus_tag_base \
+    -f Dockerfile-env . && \
+docker tag $image_plus_tag_base $image_name"-env" && \
+echo "Built $image_plus_tag_base and tagged as $image_name"-env""
 echo
 docker build --rm -t $image_plus_tag_run \
-    --build-arg BASE_IMAGE=$image_name:$distro"-env" \
-    -f "${distro}"/Dockerfile-run "${distro}" && \
-docker tag $image_plus_tag_run $image_name:$distro && \
-echo "Built $image_plus_tag_run and tagged as $image_name:$distro"
+    --build-arg BASE_IMAGE=$image_name"-env" \
+    -f Dockerfile-run . && \
+docker tag $image_plus_tag_run $image_name && \
+echo "Built $image_plus_tag_run and tagged as $image_name"
 echo
 
-git clone $repo $distro/ros2_ws/src/ && \
-echo "Cloned repository $repo to $(pwd)/$distro/ros2_ws/src/"
+git clone $repo ./ros2_ws/src/ && \
+echo "Cloned repository $repo to $(pwd)/ros2_ws/src/"
 echo
 echo "To run:"
-echo "./run.bash $image_name:$distro"
+echo "./run.bash $image_name"
