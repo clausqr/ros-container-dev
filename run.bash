@@ -54,6 +54,10 @@ CONTAINER_NAME="$(tr ':' '_' <<< "$IMG_NAME")_runtime"
 ROCKER_ARGS="${ROCKER_ARGS} --name $CONTAINER_NAME"
 
 echo "Using image <$IMG_NAME> to start container <$CONTAINER_NAME>"
-
+echo 
+echo "$(pwd)/ros2_ws will be mounted to /ros2_ws inside the container."
+echo "The container will have access to the joystick at $JOY."
+echo "The container will have access to the X server."
+echo "The container will have access to the nvidia runtime."
 
 rocker ${CUDA} ${ROCKER_ARGS} $IMG_NAME 
