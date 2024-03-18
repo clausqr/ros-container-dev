@@ -1,4 +1,4 @@
-# Develope ROS2 code in a Containarized Environment
+# Develope ROS code in a Containarized Environment
 
 ## Benefits:
 
